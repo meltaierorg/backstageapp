@@ -1,0 +1,33 @@
+
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: kv-meltaier-org
+  description: Main Azure Platform Backstage Keyvault for MeltaierOrg Tenant related secrets.
+  links:
+    - url: https://kv-meltaier-org.vault.azure.net/
+spec:
+  type: keyvault
+  lifecycle: experimental
+  owner: grp-platform-team
+  system: mg-meltaier-org-root
+  subcomponentOf: sub-sandbox-meltaierorg
+
+---
+
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: secret-vmAdmin-breakGlass
+  description: Secret for breaking glass in case of emergency
+  links:
+    - url: https://kv-meltaier-org.vault.azure.net/secrets/secret-vmAdmin-breakGlass
+spec:
+  type: keyvaultsecret
+  lifecycle: experimental
+  owner: grp-platform-team
+  system: mg-meltaier-org-root
+  subcomponentOf: kv-meltaier-org
+---

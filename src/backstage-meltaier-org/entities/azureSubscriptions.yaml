@@ -1,0 +1,36 @@
+
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sub-sandbox-meltaierorg
+  description: Sandbox Azure Subscription 1.
+  annotations:
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: subscription
+  lifecycle: experimental
+  owner: grp-platform-team
+  system: mg-meltaier-org-root
+
+---
+
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sub-sandbox-placeholder
+  title: sub-sandbox-placeholder
+  description: Sandbox Azure Subscription 2.
+  annotations:
+    azure.com/subscriptionId: 00005440000-0000-0000-000110000000
+    azure.com/tenantId: 0000011-040-0000-0000-000000110000
+spec:
+  type: subscription
+  lifecycle: experimental
+  owner: grp-platform-team
+  system: mg-meltaier-org-root
+
+---

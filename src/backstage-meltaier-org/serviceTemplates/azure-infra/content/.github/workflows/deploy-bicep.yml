@@ -1,0 +1,104 @@
+run-name: ${{ inputs.Subscription }}-${{ inputs.Environment }}-${{inputs.appName}}.bicepparam
+name: Azure Backstage Deployment Workflow
+
+      
+on:
+  workflow_dispatch:
+    inputs:
+
+
+      Subscription:
+        description: 'Subscription Folder'
+        required: true
+
+      appName:
+        description: 'Application Name'
+        required: true
+
+
+      Context:
+        description: 'Context'
+        required: true
+        default: 'workload'
+
+
+      
+      Environment:
+        description: 'Github Environment used for deployment, also needs to match repo folder name where bicepparam file is kept.'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - 'Sandbox'
+          - 'Test'
+          - 'Prod'
+
+      Region:
+        description: 'Region'
+        required: true
+        default: 'australiaeast'
+        type: choice
+        options:
+          - 'australiaeast'
+      
+      Options:
+        description: 'Pipeline Options'
+        required: true
+        default: 'Preview and Apply'
+        type: choice
+        options:
+          - 'Preview and Apply'
+          - 'Preview only'
+
+
+
+
+jobs:
+
+
+  Deploy:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.Environment}}
+    steps:
+      # Checkout Repo
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+
+     # Login using credentials
+      - name: Login to Azure 
+        uses: azure/login@v2
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
+
+
+      # Create Deployment
+      - name: Create Deployment for ${{ inputs.Context }}-${{ inputs.Subscription }}-${{ inputs.appName }}
+        uses: Azure/cli@v2
+        with:
+          inlineScript: |
+            echo Deployment Name: ${{ inputs.Context }}-${{ inputs.Subscription }}-${{ inputs.appName }}
+            echo 'USER-DEFINED PIPELINE PARAMS\n'
+            echo Subscription: ${{ inputs.Subscription }}
+            echo Context: ${{ inputs.Context }}
+            echo Environment: ${{ inputs.Environment }}
+            echo Options: ${{ inputs.Options}}
+            echo bicepParamFile: ${{ inputs.appName }}.bicepparam
+
+            echo -e 'Printing Current Directory\n'
+            pwd
+            echo -e 'Listing Files\n'
+            ls -lrt
+
+
+            echo -e 'Setting Subscription to ${{ inputs.Subscription }} \n'
+            az account set --subscription ${{ inputs.Subscription }}
+            az account show --query name -o tsv
+
+            echo -e 'Running Deployment for ${{ inputs.Context }}-${{ inputs.Subscription }}-${{ inputs.appName }} \n'
+            az deployment sub create --name ${{ inputs.Context }}-${{ inputs.Subscription }}-${{ inputs.appName }} --location  ${{ inputs.Region }} --parameters ${{ inputs.Context }}/${{ inputs.Subscription }}/${{ inputs.appName }}/${{ inputs.appName }}.bicepparam
+
+  

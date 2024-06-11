@@ -1,0 +1,92 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rg-sandbox-compute-001
+  description: Sandbox Compute Resource Group 001 for Self-Service use.
+  annotations:
+    azure.com/subscriptionDisplayName: sub-sandbox-meltaierorg
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: resourceGroup
+  lifecycle: experimental
+  owner: grp-dataengineering-team
+  system: mg-meltaier-org-root
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rg-sandbox-compute-002
+  description: Sandbox Compute Resource Group 002 for Self-Service use.
+  annotations:
+    azure.com/subscriptionDisplayName: sub-sandbox-meltaierorg
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: resourceGroup
+  lifecycle: experimental
+  owner: grp-dataengineering-team
+  system: mg-meltaier-org-root
+
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rg-sandbox-storage-001
+  description: Sandbox Storage Resource Group 001 for Self-Service use.
+  annotations:
+    azure.com/subscriptionDisplayName: sub-sandbox-meltaierorg
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: resourceGroup
+  lifecycle: experimental
+  owner: grp-dataengineering-team
+  system: mg-meltaier-org-root
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rg-sandbox-storage-002
+  description: Sandbox Storage Resource Group 002 for Self-Service use.
+  annotations:
+    azure.com/subscriptionDisplayName: sub-sandbox-meltaierorg
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: resourceGroup
+  lifecycle: experimental
+  owner: grp-dataengineering-team
+  system: mg-meltaier-org-root
+
+---
+
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rg-sandbox-secrets-001
+  description: Sandbox Secrets Resource Groups.
+  annotations:
+    azure.com/subscriptionDisplayName: sub-sandbox-meltaierorg
+    azure.com/subscriptionId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+    azure.com/tenantId: xxxx-xxx-xxxxx-xxxxx-xxxxxxxxx
+
+spec:
+  type: resourceGroup
+  lifecycle: experimental
+  owner: grp-platform-team
+  system: mg-meltaier-org-root
+
+
+---

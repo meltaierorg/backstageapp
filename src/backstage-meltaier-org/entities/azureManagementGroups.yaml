@@ -1,0 +1,11 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: mg-meltaier-org-root
+  description: Root Management Group for MeltaierOrg Tenant
+spec:
+  owner: grp-platform-team
+---
+

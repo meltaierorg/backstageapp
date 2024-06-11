@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.appName | dump }}
+  description: ${{ values.description | dump }}
+  annotations:
+    github.com/project-slug: ${{ values.repoSlug }}
+spec:
+  type: azure-infra
+  owner: group:grp-platform-team
+  lifecycle: experimental
+  subcomponentOf: ${{ values.subscription }}
