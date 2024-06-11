@@ -14,7 +14,7 @@
   - [External Groups Ingestion](#external-groups-ingestion)
   - [Service Template Structure](#service-template-structure)
   - [Service Template Deployment Demo](#demo-service-template-deployment-demo)
-
+  - [Final Thoughts](#final-thoughts)
 
 # Introduction  
 <p align="center">
@@ -571,6 +571,6 @@ Opening the newly deployed Component in Catalog, provides a CI-CD pane that pull
 
 
 
-# Final Notes
+# Final Thoughts
 
 In conclusion, Backstage offers a flexible framework for streamlining operations, providing a centralized platform for managing services, infrastructure and enabling efficient collaboration across teams. By leveraging Azure Bicep Modules, you effectively standardize your deployments , ensuring consistency, security and reliability in your infrastructure. However, it is important to recognize that implementing and maintaining such a solution requires dedicated expertise and resources (especially in Typescript). For teams seeking additional support in their Backstage journey, there are a several SaaS providers that offer this type of service.
