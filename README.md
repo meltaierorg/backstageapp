@@ -14,7 +14,7 @@
   - [Permissions Model](#permissions-model)
   - [External Groups Ingestion](#external-groups-ingestion)
   - [Service Template Structure](#service-template-structure)
-  - [Service Template Deployment Demo](#demo-service-template-deployment-demo)
+  - [Service Template Deployment Demo](#service-template-deployment-demo)
   - [Final Thoughts](#final-thoughts)
 
 # Introduction  
