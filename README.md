@@ -11,6 +11,7 @@
   - [Imported Azure Components](#imported-azure-components)
   - [Auth Providers](#auth-providers)
     - [Custom Auth Logic](#custom-auth-logic)
+  - [Permissions Model](#permissions-model)
   - [External Groups Ingestion](#external-groups-ingestion)
   - [Service Template Structure](#service-template-structure)
   - [Service Template Deployment Demo](#demo-service-template-deployment-demo)
@@ -22,7 +23,7 @@
 </p>
 
 
-In the realm of Cloud Infrastructure Deployments, persistent challenges such as slow deployment times and inconsistent configurations have long plagued Architects and Engineers alike. Addressing these issues demands an approach grounded in practical and flexible solutions. Enter Backstage, an open-source framework that is largely based on React for the frontend and express JS in the backend. Backstage empowers teams with self-service capabilities, enabling streamlined collaboration and faster iteration cycles, ultimately fostering a culture of autonomy and innovation within organizations. Leveraging Backstage's modular architecture and extensive community-maintained plugin ecosystem, infrastructure teams can establish standardized workflows, Infrastructure/Software templates and centralized visibility across different deployed Components . Backstage was initially popularized by Spotify and subsequently embraced by the DevOps and Platform Engineering communities for its robust capabilities in managing complex software ecosystems.
+In the realm of Cloud Infrastructure Deployments, persistent challenges such as slow deployment times and inconsistent configurations have long plagued Architects and Engineers alike. Addressing these issues demands an approach grounded in practical and flexible solutions. Enter Backstage, an open-source framework that is largely based on React for the frontend and express JS in the backend. Backstage empowers teams with self-service capabilities, enabling streamlined collaboration and faster iteration cycles, ultimately fostering a culture of autonomy and innovation within organizations. Leveraging Backstage's modular architecture and extensive community-maintained plugin ecosystem, infrastructure teams can begin to establish standardized workflows, Infrastructure/Software templates and centralized visibility across different deployed Components . Backstage was initially popularized by Spotify and subsequently embraced by the DevOps and Platform Engineering communities for its robust capabilities in managing complex software ecosystems.
 
 This repository hosts a customized tuned instance of Backstage that you can test-drive locally on your computer (instructions can be found [here](#Usage)) to help you understand and discover the many powerful features of Backstage. The repo also provides a Conceptual Architecure for coupling your Backstage Instance with Azure Verified Bicep Modules hosted in on Azure Container Registries to deploy Azure infrastructure, more information on this can be found [here](#Usage).
 
@@ -346,6 +347,9 @@ For more info on setting up your custom transformer logic for users signing in a
 [EntraID Org Data Transformer](https://backstage.io/docs/integrations/azure/org#using-custom-transformers)
 [Github Org Data Transformer](https://backstage.io/docs/integrations/github/org)
 
+# Permissions Model
+There is currently no permissions model setup in this Backstage instance so all users can see any Service Templates and all entities in Backstage. However in 2023 Spotify released a promising no-code UI-based RBAC plugin that allows you to set granular data/actions permissions based on Group Memberships, for more info on how to setup and install go to the [Spotify's Backstage Website](https://backstage.spotify.com/docs/plugins/rbac/setup-and-installation).
+
 ## Logon Welcome Message
 If you wish to edit the home page you need to edit the main Application file (App.tsx)
 
@@ -500,7 +504,7 @@ As Github Workflow files uses similar syntax for templating e.g ${{secrets.subsc
 **This section will cover the End-User end-to-end flow from choosing a template to deploying it.**
 
 ---
-Backstage Templates can be discovered under 'Catalog'. There is currently no permissions model setup in this Backstage instance so all users can see any Service Templates. However in 2023 Spotify released a no-code UI-based RBAC plugin that allows you to set granular data/actions permissions based on Group Memberships, for more info on how to setup and install go to the [Spotify's Backstage Website](https://backstage.spotify.com/docs/plugins/rbac/setup-and-installation).
+Backstage Templates can be discovered and selected under 'Catalog'. Users can also search Catalog Service Templates by their Type, name etc.
 
  <p align="center">
   <img src="images\createComponent.png" />
@@ -574,3 +578,9 @@ Opening the newly deployed Component in Catalog, provides a CI-CD pane that pull
 # Final Thoughts
 
 In conclusion, Backstage offers a flexible framework for streamlining operations, providing a centralized platform for managing services, infrastructure and enabling efficient collaboration across teams. By leveraging Azure Bicep Modules, you effectively standardize your deployments , ensuring consistency, security and reliability in your infrastructure. However, it is important to recognize that implementing and maintaining such a solution requires dedicated expertise and resources (especially in Typescript). For teams seeking additional support in their Backstage journey, there are a several SaaS providers that offer this type of service.
+
+
+
+**Author:** Mohamed El Taier
+
+**Date** 11/06/24
