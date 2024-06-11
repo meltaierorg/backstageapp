@@ -217,7 +217,7 @@ For Production its highly reccommend you either:
 
 # Auth Providers
 
-This Backstage instance leverages both Entra and Github as Idenitity Providers, but it is important to understand how the Auth is configured.
+This Backstage instance leverages both Entra and Github as Idenitity Providers, but it is important to understand how the Auth is configured for the Backstage App in this Repo.
 
 Entra Auth Provider is configured as the sole means of signing in using SSO, while Github Auth Provider is only used once the End-User is logged-in and attempts to publish a new Repo through a Service Template in Backstage. See below sections for configurations of each provider and important notes.
 
@@ -497,7 +497,7 @@ As Github Workflow files uses similar syntax for templating e.g ${{secrets.subsc
           - '.github/workflows/deploy-bicep.yml'
 ```
 # Service Template Deployment Demo
-**This section will cover the End-User end to end flow from launch a template to deploying it.**
+**This section will cover the End-User end-to-end flow from choosing a template to deploying it.**
 
 ---
 Backstage Templates can be discovered under 'Catalog'. There is currently no permissions model setup in this Backstage instance so all users can see any Service Templates. However in 2023 Spotify released a no-code UI-based RBAC plugin that allows you to set granular data/actions permissions based on Group Memberships, for more info on how to setup and install go to the [Spotify's Backstage Website](https://backstage.spotify.com/docs/plugins/rbac/setup-and-installation).
