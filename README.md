@@ -391,8 +391,13 @@ The structure of the template is as below:
 
 <p>Let's break down the purpose of each file in this folder:</p>
 
+---
+
 ## <p>file: template.yaml</p>
 **Location:**<p>rc\backstage-meltaier-org\serviceTemplates\azure-infra\template.yaml</p>
+
+---
+
 **Description:**<p> This template file is the main configuration file that Backstage uses to collect Parameters from the user and later uses the values provided to render a scaffolded repo.
 There are 3 x main stages for each Template file:</p>
 
