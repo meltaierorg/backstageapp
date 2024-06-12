@@ -351,7 +351,7 @@ For more info on setting up your custom transformer logic for users signing in a
 [Github Org Data Transformer](https://backstage.io/docs/integrations/github/org)
 
 # Permissions Model
-There is currently no permissions model setup in this Backstage instance so all users can see any Service Templates and all entities in Backstage. However in 2023 Spotify released a promising no-code UI-based RBAC plugin that allows you to set granular data/actions permissions based on Group Memberships, for more info on how to setup and install go to the [Spotify's Backstage Website](https://backstage.spotify.com/docs/plugins/rbac/setup-and-installation).
+There is currently no permissions model setup in this Backstage instance so all users can see any Service Templates and all entities in Backstage. However in 2023 Spotify released a promising no-code UI-based RBAC plugin that allows you to set granular data/actions permissions based on Group Memberships, for more info on how to setup and install go to the [Spotify's Backstage RBAC Plugin Setup](https://backstage.spotify.com/docs/plugins/rbac/setup-and-installation).
 
 ## Logon Welcome Message
 If you wish to edit the home page you need to edit the main Application file (App.tsx)
