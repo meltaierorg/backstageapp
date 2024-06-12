@@ -18,8 +18,8 @@
   - [Final Thoughts](#final-thoughts)
 
 # Introduction  
-<p align="center">
-  <img src="images/bkstagelogo.png" />
+<p align="center" >
+  <img src="images/backstage-logos-hero-8.gif" />
 </p>
 
 
