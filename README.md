@@ -62,10 +62,10 @@ Backstage can be deployed on a laptop, a docker container , a k8 cluster and jus
 ## Prerequisites
 
 1. Install NPM. NPM is basic Node Package Manager that you will be using to install Yarn (see step 2).
-Instructions can be found here -> https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+Instructions for installation cab be found here  -> https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-2. Install Yarn. Yarn is an advanced Node package manager tool that Backstage uses to download all the node packages needed by Backstage's Backend and Frontend (has higher concurrency than NPM and more suited for larger and more complex React Projects), it also helps you run the App locally using a simple command ```yarn dev```, the backend and front end are automatically launched by this simple command.
-Instructions can be found here -> https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
+2. Install Yarn. Yarn is an advanced Node package manager tool that Backstage uses to download all the node packages needed by Backstage's Backend and Frontend (Yarn higher concurrency than NPM and more suited for larger and more complex Projects), it also helps you run the App locally using a simple command ```yarn dev```, the backend and front end are automatically launched by this simple command.
+Instructions for installation cab be found here -> https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 3. You will need to setup your own **Bicep Orchestration Module** to be used by Backstage in the backend. For the demo shown in this repo, the Bicep Orchestration modules used can be found here https://github.com/meltaierorg/bicep-factory . Fork this repo and follow the instructions there to deploy an Azure Container Registry and publish the Bicep Orchestration Module to it.
 To ensure you can pull Bicep Modules from this Registry, ensure any ServicePrincipal/Account used in testing has ```ACR Pull Premission``` on the respective registry. More details can be found [here](#prerequisites).
@@ -343,8 +343,11 @@ identities from different Azure Tenants, you may want to edit the namespace the 
 More info on namespaces can be found here [Entity References](https://backstage.io/docs/features/software-catalog/references/)
 
 For more info on setting up your custom transformer logic for users signing in as well as the groups being ingested:
+
 [User Profile Transformers](https://backstage.io/docs/auth/identity-resolver#profile-transforms)
+
 [EntraID Org Data Transformer](https://backstage.io/docs/integrations/azure/org#using-custom-transformers)
+
 [Github Org Data Transformer](https://backstage.io/docs/integrations/github/org)
 
 # Permissions Model
