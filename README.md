@@ -23,16 +23,16 @@
 
 Persistent challenges such as slow deployment times and inconsistent configurations have long plagued Architects and Engineers alike. Addressing these issues demands an approach grounded in practical and flexible solutions. Enter Backstage, an open-source framework that is largely based on React for the frontend and express JS in the backend. Backstage empowers teams with self-service capabilities, enabling streamlined collaboration and faster iteration cycles, ultimately fostering a culture of autonomy and innovation within organizations. Leveraging Backstage's modular architecture and extensive community-maintained plugin ecosystem, infrastructure teams can begin to establish standardized workflows, Infrastructure/Software templates and Centralized visibility across different deployed Components . Backstage was initially popularized by Spotify and subsequently embraced by the DevOps and Platform Engineering communities for its robust capabilities in managing complex software ecosystems.
 
-This repository hosts a customized tuned instance of Backstage that you can test-drive locally on your computer (instructions can be found [here](#Usage)) to help you understand and discover the many powerful features of Backstage. The repo also provides a Conceptual Architecure for coupling your Backstage Instance with Azure Verified Bicep Modules hosted in on Azure Container Registries to deploy Azure infrastructure, more information on this can be found [here](#Usage).
+This repository hosts a customized tuned instance of Backstage that you can test-drive locally on your computer (instructions can be found [here](#Usage)) to help you understand and discover the many powerful features of Backstage. The repo also provides a Conceptual Architecture for coupling your Backstage Instance with Azure Verified Bicep Modules hosted in on Azure Container Registries to deploy Azure infrastructure, more information on this can be found [here](#Usage).
 
 # Architecture
 The Architecture used to setup the Conceptual Self-Service Platform is depicted in the following diagram.
 At a high level the Conceptual Architecture that is put forward in this repo consists of the following key components and features:
 
-1. A Backstage Instance pre-configured with EntraID, Github Auth Providers and Custom Auth Logic. Custom Auth logic is used for the the Sign-In Resolvers in the backend. The custom logic limits access to the Backstage Instance by checking the Azure tenant in which the End User is signing on from, more details can be found here [Entra ID](#entra-id). 
+1. A Backstage Instance pre-configured with EntraID, Github Auth Providers and Custom Auth Logic. Custom Auth logic is used for the Sign-In Resolvers in the backend. The custom logic limits access to the Backstage Instance by checking the Azure tenant in which the End User is signing on from, more details can be found here [Entra ID](#entra-id). 
 Refer to the related sections for more information on each part of this solution.
 
-2. Backstage Integration with EntraID and Github to ingest Organizational data from these systems (Groups and Teams respectively), this feature will come handy as we will be using the ingested data as lookup tables for delegating access to Components/Assets deployed by End-Users. More info can be found in [EntraID Group Ingestion](#entraid-group-ingestion) and [GithubTeams Ingestion](#github-teams-ingestion).
+2. Backstage Integration with EntraID and Github to ingest Organizational data from these systems (Groups and Teams respectively), this feature will come handy as we will be using the ingested data as lookup tables for delegating access to Components/Assets deployed by End-Users. More info can be found in [External Groups Ingestion](#external-groups-ingestion).
 
 3. Registration of existing Organization Assets such as Subscriptions, Resource Groups, Keyvaults and Secrets. The registration of these components allows users to use them as lookup tables when customizing their deployments when launching template from the Backstage Service Catalog. Additional metadata to these resources are also added (annotations) to ensure we can fetch essnetial data (e.g Subscription ID, Tenant ID etc) from these Catalog components . More info can be found here [Imported Azure Components](#imported-azure-components). 
 
@@ -338,7 +338,7 @@ backend.add(customAuth);
 ```
 **Note**: Depending on your Organization you may need to edit the existing code provided for Custom Auth. 
 <p>If you are also integrating many identity sources, you may need to consider developing your own User Profile Transformer code. For example, if you are ingesting
-identities from different Azure Tenants, you may want to edit the namespace the user Entity is assigned to when they login to Backstage. The namespace provides the means to setup logical grouping of entities from different Identity Sources (default namespace is otherwise used - 'default').</p>
+identities from different Azure Tenants, you may want to edit the namespace the user Entity is assigned to when they login to Backstage. The namespace provides the means to setup logical grouping of group entities ingested from different Identity Sources (default namespace is otherwise used - 'default').</p>
 
 More info on namespaces can be found here [Entity References](https://backstage.io/docs/features/software-catalog/references/)
 
