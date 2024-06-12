@@ -29,7 +29,7 @@ This repository hosts a customized tuned instance of Backstage that you can test
 The Architecture used to setup the Conceptual Self-Service Platform is depicted in the following diagram.
 At a high level the Conceptual Architecture that is put forward in this repo consists of the following key components and features:
 
-1. A Backstage Instance pre-configured with EntraID, Github Auth Providers and Custom Auth Logic. Custom Auth logic is used for the Sign-In Resolvers in the backend. The custom logic limits access to the Backstage Instance by checking the Azure tenant in which the End User is signing on from, more details can be found  [here](#custom-auth-logic). 
+1. A Backstage Instance pre-configured with EntraID, Github Auth Providers and Custom Auth Logic. Custom Auth logic is used for the Sign-In Resolvers in the backend. The custom logic limits access to the Backstage Instance by checking the EntraID Directory in which the End User is signing on from, more details can be found  [here](#custom-auth-logic). 
 Refer to the related sections for more information on each part of this solution.
 
 2. Backstage Integration with EntraID and Github to ingest Organizational data from these systems (Groups and Teams respectively), this feature will come handy as we will be using the ingested data as lookup tables for delegating access to Components/Assets deployed by End-Users. More info can be found in [External Groups Ingestion](#external-groups-ingestion).
@@ -103,13 +103,13 @@ After you create the SPN and any neccessary Azure Role Assignment (Contributor R
 
 
 
-7. To ensure Azure SSO works with you Azure tenant, you will need to edit a couple of Typescript files and replace any mention of the placeholder tenant below
-Remove ***meltaier.onmicrosoft.com*** from the below files and replace it with your own Azure Tenant Domain
+7. To ensure Azure SSO works with you Entra ID Directory, you will need to edit a couple of Typescript files and replace any mention of the placeholder tenant below
+Remove ***meltaier.onmicrosoft.com*** from the below files and replace it with your own Entra ID Domain
 ```
 src\backstage-meltaier-org\packages\app\src\App.tsx
 src\backstage-meltaier-org\packages\backend\src\index.ts
 ```
-<p> You will also need to remove any references for Github Org or Azure Tenant **meltaierorg** and replace it with your own values.</p>
+<p> You will also need to remove any references for Github Org or Entra ID Domain **meltaierorg** and replace it with your own values.</p>
 
 Congratulations! Now you are ready to run Backstage. 
 
@@ -231,7 +231,7 @@ To setup Entra ID and Github auth, credentials are setup under **backend** and *
 
 ## Custom Auth Logic
 
-To ensure the Backstage instance is locked down to one or more Azure tenants, custom Auth logic is added (typically referred to as a signInResolver logic in Backstage [Documentation](https://backstage.io/docs/auth/identity-resolver)).
+To ensure the Backstage instance is locked down to one or more Entra ID Domains, custom Auth logic is added (typically referred to as a signInResolver logic in Backstage [Documentation](https://backstage.io/docs/auth/identity-resolver)).
 
 During sign-in, Backstage grabs the profile details from the user logging in, and then it runs the custom logic under the *async signInResolver block* to decide whether the user should be issued a Backstage Token to access the Backstage App. If the user is authenticated and passes through the SignInresolver logic gate, Backstage will then form the Backstage User entity that the logged in user will assume, see ```const UserEntity``` code block. The custom code used for the signin resolver for this backstage instance is shown below
 
@@ -338,7 +338,7 @@ backend.add(customAuth);
 ```
 **Note**: Depending on your Organization you may need to edit the existing code provided for Custom Auth. 
 <p>If you are also integrating many identity sources, you may need to consider developing your own User Profile Transformer code. For example, if you are ingesting
-identities from different Azure Tenants, you may want to edit the namespace the user Entity is assigned to when they login to Backstage. The namespace provides the means to setup logical grouping of group entities ingested from different Identity Sources (default namespace is otherwise used - 'default').</p>
+identities from different Entra ID Directories, you may want to edit the namespace the user Entity is assigned to when they login to Backstage. The namespace provides the means to setup logical grouping of group entities ingested from different Identity Sources (default namespace is otherwise used - 'default').</p>
 
 More info on namespaces can be found here [Entity References](https://backstage.io/docs/features/software-catalog/references/)
 
@@ -377,7 +377,7 @@ The Backstage instance in this repo is configured to ingest User and Group/Teams
   <img src="images\groupIngestion.png" />
 </p>
 
-Note: As mentioned in [Custom Auth Logic](#custom-auth-logic), if you are ingesting identies from multiple Azure tenants you may need to consider using a custom Transformer to ensure Identities are grouped under a specific Backstage Namespace when they are bieng ingested.
+Note: As mentioned in [Custom Auth Logic](#custom-auth-logic), if you are ingesting identies from multiple Entra ID Directories you may need to consider using a custom Transformer to ensure Identities are grouped under a specific Backstage Namespace when they are bieng ingested.
 
 # Service Template Structure
 
