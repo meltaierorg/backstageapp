@@ -38,7 +38,7 @@ Refer to the related sections for more information on each part of this solution
 
 3. Registration of existing Organization Assets such as Subscriptions, Resource Groups, Keyvaults and Secrets. The registration of these components allows users to use them as lookup tables when customizing their deployments when launching template from the Backstage Service Catalog. Additional metadata to these resources are also added (annotations) to ensure we can fetch essnetial data (e.g Subscription ID, Tenant ID etc) from these Catalog components . More info can be found here [Imported Azure Components](#imported-azure-components). 
 
-4. A highly customized Service Template for deploying VMs through Backstage, this template is designed to showcase and highlight the following key features
+4. A highly customized Backstage Service Template for deploying VMs through Backstage, this template is designed to showcase and highlight the following key features
 - oAuth Sign-in using Github Account to verify the logged in User has access to the Github Org they are deploying repos to
 
 - the use of imported/registered components to use as lookup tables for creating drop-down options to end-users
