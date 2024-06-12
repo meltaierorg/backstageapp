@@ -427,8 +427,13 @@ One of the key steps in the execution is fetching the template files from the co
         catalogInfoPath: '/catalog-info.yaml'
 ```
 
+---
+
 ## <p>file: catalog-info.yaml</p>
 **Location:**<p>src\backstage-meltaier-org\serviceTemplates\azure-infra\content\catalog-info.yaml</p>
+
+---
+
 **Description:**<p> This file can be considered as the unique identity for the specific component the end-user deployed, it is also meant to hold metadata about the component</p>
 Essential Metadata can be static or dynamic. In most cases you would want to have both types of Metadata. See example catalog-info in this repo. 
 Note: the *dump* nunjucks filter found in ```${{ values.appName | dump }}``` is effectively used to ensure any value injected is surrounded by double quotes, this can be helpful if you are dealing with special characters.
@@ -450,8 +455,13 @@ spec:
 ```
 Just like all the other files in the template folder, this file is rendered through Backstage's templating engine and the dynamic values are injected to this file, before getting published to a Repo, which later gets accessed by Backstage remotely(during **publish:github** step) to register the component in Backstage Catalog.
 
+---
+
 ## <p>file: {{values.appName}}.bicepparam</p>
 **Location:**<p>src\backstage-meltaier-org\serviceTemplates\azure-infra\content\workload\${{values.subscription}}\${{values.appName}}\${{values.appName}}.bicepparam</p>
+
+---
+
 **Description:**<p> This file as the syntax implies is dynamically named after the App Name.</p>
 This is the parameter file that we will be using to deploy Azure Resources through an Orchestration module hosted in an Azure Container Registry.
 
@@ -489,9 +499,13 @@ To help you visualize the templating proccess refer to the snippet below that sh
   <img src="images\templating.png" />
 </p>
 
+---
 
 ## <p>file: deploy-bicep.yml</p>
 **Location:**<p>src\backstage-meltaier-org\serviceTemplates\azure-infra\content\.github\workflows\deploy-bicep.yml</p>
+
+---
+
 **Description:**<p> This file is the Github Workflow that Backstage will trigger and pass workflow params to.</p>
 As Github Workflow files uses similar syntax for templating e.g ${{secrets.subscriptionID}}. This is a file we must exclude from the Backstage templating engine to ensure the Github Workflow file is unchanged when it is published to a new Repo, this is already done in our template using the copyWithoutRender clause, as below
 
