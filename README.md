@@ -64,7 +64,7 @@ Backstage can be deployed on a laptop, a docker container , a k8 cluster and jus
 1. Install NPM. NPM is basic Node Package Manager that you will be using to install Yarn (see step 2).
 Instructions can be found here -> https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-2. Install Yarn. Yarn is an advanced Node package manager tool that Backstage uses to download React Libraries used by Backstage's Backend and Frontend (has higher concurrency than NPM and more suited for larger and more complex React Projects), it also helps you run the App locally using a simple command ```yarn dev```, the backend and front end are automatically launched by this simple command.
+2. Install Yarn. Yarn is an advanced Node package manager tool that Backstage uses to download all the node packages needed by Backstage's Backend and Frontend (has higher concurrency than NPM and more suited for larger and more complex React Projects), it also helps you run the App locally using a simple command ```yarn dev```, the backend and front end are automatically launched by this simple command.
 Instructions can be found here -> https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 3. You will need to setup your own **Bicep Orchestration Module** to be used by Backstage in the backend. For the demo shown in this repo, the Bicep Orchestration modules used can be found here https://github.com/meltaierorg/bicep-factory . Fork this repo and follow the instructions there to deploy an Azure Container Registry and publish the Bicep Orchestration Module to it.
