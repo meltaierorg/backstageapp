@@ -19,7 +19,7 @@
 
 # Introduction  
 <p align="center" >
-  <img src="images/backstage-logos-hero-8.gif" link="https://backstage.io/"/>
+  <img src="images/backstage-logos-hero-8.gif"(https://backstage.io/) />
 </p>
 
 
