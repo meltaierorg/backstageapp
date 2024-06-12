@@ -18,10 +18,8 @@
   - [Final Thoughts](#final-thoughts)
 
 # Introduction  
-<p align="center" >
-  <img src="images/backstage-logos-hero-8.gif"(https://backstage.io/) />
-</p>
 
+[<img src="images/backstage-logos-hero-8.gif" align="center">](https://backstage.io/)
 
 Persistent challenges such as slow deployment times and inconsistent configurations have long plagued Architects and Engineers alike. Addressing these issues demands an approach grounded in practical and flexible solutions. Enter Backstage, an open-source framework that is largely based on React for the frontend and express JS in the backend. Backstage empowers teams with self-service capabilities, enabling streamlined collaboration and faster iteration cycles, ultimately fostering a culture of autonomy and innovation within organizations. Leveraging Backstage's modular architecture and extensive community-maintained plugin ecosystem, infrastructure teams can begin to establish standardized workflows, Infrastructure/Software templates and Centralized visibility across different deployed Components . Backstage was initially popularized by Spotify and subsequently embraced by the DevOps and Platform Engineering communities for its robust capabilities in managing complex software ecosystems.
 
