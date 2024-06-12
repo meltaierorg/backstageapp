@@ -344,7 +344,7 @@ More info on namespaces can be found here [Entity References](https://backstage.
 
 For more info on setting up your custom transformer logic for users signing in as well as the groups being ingested:
 
-[User Profile Transformers](https://backstage.io/docs/auth/identity-resolver#profile-transforms)
+[User Login Transformers](https://backstage.io/docs/auth/identity-resolver#profile-transforms)
 
 [EntraID Org Data Transformer](https://backstage.io/docs/integrations/azure/org#using-custom-transformers)
 
