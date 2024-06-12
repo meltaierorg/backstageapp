@@ -14,7 +14,7 @@
   - [Permissions Model](#permissions-model)
   - [External Groups Ingestion](#external-groups-ingestion)
   - [Service Template Structure](#service-template-structure)
-  - [Service Template Deployment Demo](#service-template-deployment-demo)
+  - [Service Template Deployment Demo](#demo-service-template-deployment-demo)
   - [Final Thoughts](#final-thoughts)
 
 # Introduction  
@@ -39,6 +39,7 @@ Refer to the related sections for more information on each part of this solution
 3. Registration of existing Organization Assets such as Subscriptions, Resource Groups, Keyvaults and Secrets. The registration of these components allows users to use them as lookup tables when customizing their deployments when launching template from the Backstage Service Catalog. Additional metadata to these resources are also added (annotations) to ensure we can fetch essnetial data (e.g Subscription ID, Tenant ID etc) from these Catalog components . More info can be found here [Imported Azure Components](#imported-azure-components). 
 
 4. A highly customized Backstage Service Template for deploying VMs through Backstage, this template is designed to showcase and highlight the following key features
+
 - oAuth Sign-in using Github Account to verify the logged in User has access to the Github Org they are deploying repos to
 
 - the use of imported/registered components to use as lookup tables for creating drop-down options to end-users
@@ -77,17 +78,18 @@ After creating the token, export it as an Environment variable using the followi
 More info can be found here - > https://backstage.io/docs/integrations/github/locations#token-scopes
 
 5. Create a Github oAuth or Normal Github App. This App allows you to run an oAuth Workflow each time the End-User is deploying any Github related config, enforcing a higher level of Identity Security. Refer to the image below for the URLs you need to set for the Github oAuth App or Github App.
-After you create the App, export the following as Environment Variable Keys. Note: In this Demo, an oAuth App is used (if you want to use Github App instead, export the env vars that are outlined here instead https://backstage.io/docs/integrations/github/github-apps#including-in-integrations-config)
+After you create the App, export the following keys and their values as Environment Variable Keys. Note: In this Demo, an oAuth App is used (if you want to use Github App instead, export the env vars that are outlined here instead https://backstage.io/docs/integrations/github/github-apps#including-in-integrations-config)
 
 - AUTH_GITHUB_CLIENT_ID <br />
 - AUTH_GITHUB_CLIENT_SECRET <br/>
+
 More info -> https://backstage.io/docs/integrations/azure/org#app-registration <br/>
 
 <p align="center">
   <img src="images/githuboAuth.png" />
 </p>
 
-6. Create an Azure Service Principal for Entra ID Auth so you can login to your local backstage instance via your EntraID credentials. If you are looking to test Azure deployments you can also use the same Service Principal for both cases (EntraID Org Data ingestion + Azure Deployments), you will need the Service Principal Secret handy as you will prompted to enter it in the Backstage Service Template deployment form, see [Service Template Deployment Demo](#demo-service-template-deployment-demo). Refer to the image below for the URLs you need to set for the Azure SPN.
+6. Create an Azure Service Principal for Entra ID Auth so you can login to your local backstage instance via your EntraID credentials. If you are looking to test Azure deployments (via Backstage Service Templates) you can also use the same Service Principal for both cases (EntraID Org Data ingestion + Azure Deployments), you will need the Service Principal Secret handy as you will prompted to enter it in the Backstage Service Template deployment form, see [Service Template Deployment Demo](#demo-service-template-deployment-demo). Refer to the image below for the URLs you need to set for the Azure SPN.
 
  <p align="center">
   <img src="images/msoAuth-1.png" />
@@ -96,7 +98,7 @@ More info -> https://backstage.io/docs/integrations/azure/org#app-registration <
   <img src="images/msoAuth-2.png" />
 </p>
 
-After you create the SPN and any neccessary Azure Role Assignment (Contributor Role at Subscription Scope should be fine), export the credentials as Env Vars, use the following keys as below:
+After you create the SPN and any neccessary Azure Role Assignment (Contributor Role at Subscription Scope should be fine), export the credentials as Env Vars, export the following keys as below:
 - AZURE_CLIENT_ID <br />
 - AZURE_CLIENT_SECRET <br />
 - AZURE_TENANT_ID <br />
@@ -114,7 +116,6 @@ src\backstage-meltaier-org\packages\backend\src\index.ts
 Congratulations! Now you are ready to run Backstage. 
 
 ## Deployment
-
 
 
 To deploy this Backstage instance, simply clone this repo to your local machine, enter the root directory and type the following
@@ -206,7 +207,7 @@ Backstage also provides additonal guidance on Front end UI customization using t
 
 Importing Azure Resources is as easy writing a YAML manifiest file for them and then adding a reference to them through the app-config.yaml file. The app-config.yaml is the configuration file that Backstage uses to load Backstage configuration data during startup. During startup it attempts to load all Catalog components that you added to the app-config.yaml. Refer to the snippet below for a demonstration on how the YAML file config is translated to the Backstage front end.
 
-Note that the configuration files are added directly to the **entities** folder in this repo for simplicity. However it is typically best practice to load them from an external repo.
+Note that the configuration files are added directly to the **entities** folder in this repo for simplicity. However it is typically best practice to load them from an external system (e.g Github Repo ).
 For Production its highly reccommend you either:
 - Load the config files from an external repo, guidance can be found [Static Location Configuration Files](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 - Dynamically discover the configuration files, guidance can be found here [Dynamic Discovery of Configuration File](https://backstage.io/docs/integrations/github/discovery#configuration)
@@ -218,11 +219,11 @@ For Production its highly reccommend you either:
 
 # Auth Providers
 
-This Backstage instance leverages both Entra and Github as Idenitity Providers, but it is important to understand how the Auth is configured for the Backstage App in this Repo.
+This Backstage instance leverages both Entra and Github as Identity Providers, but it is important to understand how the Auth is configured for the custom Backstage App in this Repo.
 
-Entra Auth Provider is configured as the sole means of signing in using SSO, while Github Auth Provider is only used once the End-User is logged-in and attempts to publish a new Repo through a Service Template in Backstage. See below sections for configurations of each provider and important notes.
+Entra Auth Provider is configured as the sole means of signing-in to Backstage using SSO, while Github Auth Provider is only used once the End-User is logged-in and attempts to publish a new Repo through a Service Template in Backstage. See below sections for configurations of each provider and important notes.
 
-Guest level access is also currently configured for this backstage , which allows you to login without credentials. In a production environment you will need to make sure this Provider is disabled (which you can do by omitting this provider from the **backend** and **auth** blocks in App-config.yaml) 
+Guest level access is also currently enabled for this custom Backstage app , which allows you to login without credentials. In a production environment you will need to make sure this Provider is disabled (which you can do by omitting this provider from the **backend** and **auth** blocks in App-config.yaml) 
 
 To setup Entra ID and Github auth, credentials are setup under **backend** and **auth** blocks in app-config.yaml file.
 <p> If your configuration is successfull, it should appear as below.</p>
@@ -232,7 +233,8 @@ To setup Entra ID and Github auth, credentials are setup under **backend** and *
 
 ## Custom Auth Logic
 
-To ensure the Backstage instance is locked down to one or more Azure tenants, custom Auth logic is added (typically referred to as a signInResolver in Backstage [Documentation](https://backstage.io/docs/auth/identity-resolver)).
+To ensure the Backstage instance is locked down to one or more Azure tenants, custom Auth logic is added (typically referred to as a signInResolver logic in Backstage [Documentation](https://backstage.io/docs/auth/identity-resolver)).
+
 During sign-in, Backstage grabs the profile details from the user logging in, and then it runs the custom logic under the *async signInResolver block* to decide whether the user should be issued a Backstage Token to access the Backstage App. If the user is authenticated and passes through the SignInresolver logic gate, Backstage will then form the Backstage User entity that the logged in user will assume, see ```const UserEntity``` code block. The custom code used for the signin resolver for this backstage instance is shown below
 
 Location: ```src\backstage-meltaier-org\packages\backend\src\index.ts```
@@ -336,9 +338,9 @@ const customAuth = createBackendModule({
 
 backend.add(customAuth);
 ```
-**Note**: Depending on your Organization you may want to edit the existing code provided for Custom Auth. 
-<p>If you are also integrating many identity sources, you may need to consider developing your own transformer code. For example, if you are ingesting
-identities from different tenants, you may want to edit the namespace the user Entity is assigned to. The namespace provides the means to setup logical grouping of entities from different Identity Sources(default namespace is otherwise used - 'default').</p>
+**Note**: Depending on your Organization you may need to edit the existing code provided for Custom Auth. 
+<p>If you are also integrating many identity sources, you may need to consider developing your own User Profile Transformer code. For example, if you are ingesting
+identities from different Azure Tenants, you may want to edit the namespace the user Entity is assigned to when they login to Backstage. The namespace provides the means to setup logical grouping of entities from different Identity Sources (default namespace is otherwise used - 'default').</p>
 
 More info on namespaces can be found here [Entity References](https://backstage.io/docs/features/software-catalog/references/)
 
@@ -513,7 +515,7 @@ Backstage Templates can be discovered and selected under 'Catalog'. Users can al
 ---
 
 
-In this dialog box, notice how the *catalogFilter* option is set for the *owner* parameter to provide lookup functionality. This allows the End-User to delegate permissions for the new Repo to a Github Team. In the later sections you will see how we are then passing this parameter value to set the provided Github Team as Repo Collaborators. 
+In this dialog box, notice how the *catalogFilter* option is set for the *owner* parameter to provide lookup functionality. This allows the End-User to delgate permissions for the new Repo to a Github Team. In the later sections you will see how we are then passing this parameter value to set the provided Github Team as Repo Collaborators. 
 
  <p align="center">
   <img src="images\paramGroup1.png" />
