@@ -14,7 +14,7 @@
   - [Permissions Model](#permissions-model)
   - [External Groups Ingestion](#external-groups-ingestion)
   - [Service Template Structure](#service-template-structure)
-  - [Service Template Deployment Demo](#demo-service-template-deployment-demo)
+  - [Service Template Deployment Demo](#service-template-deployment-demo)
   - [Final Thoughts](#final-thoughts)
 
 # Introduction  
@@ -513,7 +513,7 @@ Backstage Templates can be discovered and selected under 'Catalog'. Users can al
 ---
 
 
-In this dialog box, notice how the *catalogFilter* option is set for the *owner* parameter to provide lookup functionality. This allows the End-User to delgate permissions for the new Repo to a Github Team. In the later sections you will see how we are then passing this parameter value to set the provided Github Team as Repo Collaborators. 
+In this dialog box, notice how the *catalogFilter* option is set for the *owner* parameter to provide lookup functionality. This allows the End-User to delegate permissions for the new Repo to a Github Team. In the later sections you will see how we are then passing this parameter value to set the provided Github Team as Repo Collaborators. 
 
  <p align="center">
   <img src="images\paramGroup1.png" />
