@@ -48,7 +48,7 @@ Refer to the related sections for more information on each part of this solution
 
 - Integration with Github Actions (using a custom plugin) to not only trigger workflows after creation of a new Repo, but to also provide the user with a direct view of the workflow progress and logs, all from the Backstage UI.
 
-5. An Azure Container Registry for hosting Verified Bicep Modules that the Github Workflows calls upon (triggered by backstage) to deploy Azure Resources. The code for the Verified Bicep Orchestration Module can be found [here](https://github.com/meltaierorg/bicep-factory). You will need to create your own Azure Container Registry and publish the module to it , this is all covered in [Prerequisites](#Prerequisites)
+5. An Azure Container Registry for hosting Verified Bicep Modules that the Github Workflows calls upon (triggered by backstage) to deploy Azure Resources. The sameple Bicep Orchestration Module used by this repo can be found [here](https://github.com/meltaierorg/bicep-factory). You will need to create your own Azure Container Registry and publish the module to it , this is all covered in [Prerequisites](#Prerequisites)
 
 
  <p align="center">
