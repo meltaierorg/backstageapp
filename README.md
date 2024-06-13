@@ -121,6 +121,7 @@ To deploy this Backstage instance, simply clone this repo to your local machine,
  cd src\backstage-meltaier-org
 ```
 ```
+yarn install
 yarn dev
 ```
 Yarn will automatically open your browser (on http://localhost:7007/) and attempt to launch the backend and front end. You should be confronted with the SSO login screen as below:
