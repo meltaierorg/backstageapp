@@ -16,7 +16,7 @@ import {
   myUserTransformer,
   myGroupTransformer,
   myOrganizationTransformer,
-} from './transformers';
+} from './EntraTransformer';
 import { stringifyEntityRef, DEFAULT_NAMESPACE } from '@backstage/catalog-model';
 import { microsoftAuthenticator } from '@backstage/plugin-auth-backend-module-microsoft-provider';
 import { githubAuthenticator } from '@backstage/plugin-auth-backend-module-github-provider';
