@@ -11,6 +11,12 @@ import { createBackend } from '@backstage/backend-defaults';
 ///////////////////////////////////
 const backend = createBackend();
 import { createBackendModule } from '@backstage/backend-plugin-api';
+import { microsoftGraphOrgEntityProviderTransformExtensionPoint } from '@backstage/plugin-catalog-backend-module-msgraph/alpha';
+import {
+  myUserTransformer,
+  myGroupTransformer,
+  myOrganizationTransformer,
+} from './transformers';
 import { stringifyEntityRef, DEFAULT_NAMESPACE } from '@backstage/catalog-model';
 import { microsoftAuthenticator } from '@backstage/plugin-auth-backend-module-microsoft-provider';
 import { githubAuthenticator } from '@backstage/plugin-auth-backend-module-github-provider';
@@ -109,6 +115,27 @@ const customAuth = createBackendModule({
 backend.add(customAuth);
 ///////////////////////////
 ///////////////
+backend.add(
+  createBackendModule({
+    pluginId: 'catalog',
+    moduleId: 'microsoft-graph-extensions',
+    register(env) {
+      env.registerInit({
+        deps: {
+          microsoftGraphTransformers:
+            microsoftGraphOrgEntityProviderTransformExtensionPoint,
+        },
+        async init({ microsoftGraphTransformers }) {
+          microsoftGraphTransformers.setUserTransformer(myUserTransformer);
+          microsoftGraphTransformers.setGroupTransformer(myGroupTransformer);
+          microsoftGraphTransformers.setOrganizationTransformer(
+            myOrganizationTransformer,
+          );
+        },
+      });
+    },
+  }),
+);
 
 
 
